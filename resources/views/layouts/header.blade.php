@@ -12,10 +12,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <title>AdminLTE 3 | Starter</title>
 
+  <!--CSRF-Token cross site request forgery security -->
+  <meta name="csrf-token" content="{{ csrf_token() }}" >
   <!-- Theme style -->
   <link rel="stylesheet" href="css/app.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">

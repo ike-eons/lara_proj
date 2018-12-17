@@ -1,5 +1,7 @@
 
 @include('layouts.header')
+
+<div class="wrapper" id="app">
   <!-- Navbar -->
   @include('layouts.topnav')
   <!-- /.navbar -->
@@ -15,8 +17,16 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    @yield('content')
+    <div class="content">
+      <div class="container-fluid">
+        <!-- @yield('content') -->
+
+        <!-- display component content here -->
+        <router-view></router-view>
+      </div>
+    </div>
     <!-- /.content -->
-  
+</div>
+<!-- /.content-wrapper -->
 
     @include('layouts.footer')
