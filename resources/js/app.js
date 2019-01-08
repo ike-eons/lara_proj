@@ -22,6 +22,7 @@ import VueRouter from 'vue-router'
 import swal from 'sweetalert2'
 window.swal = swal; //sweet alert
 
+//display comfirm dialog top-right
 const toast = swal.mixin({
     toast: true,
     position: 'top-end',
@@ -37,6 +38,11 @@ window.toast = toast;
 Window.Form = Form;
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
+
+
+// create new instance of vue as Fire
+let Fire = new Vue();
+window.Fire = Fire;
 
 //string to uppercase
 Vue.filter('uppercase', function (text) {
