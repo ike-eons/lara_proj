@@ -42753,7 +42753,15 @@ __WEBPACK_IMPORTED_MODULE_3_vue___default.a.component('example-component', __web
 
 var app = new __WEBPACK_IMPORTED_MODULE_3_vue___default.a({
     el: '#app',
-    router: router
+    router: router,
+    data: {
+        search: ''
+    },
+    methods: {
+        searchit: function searchit() {
+            Fire.$emit('searching');
+        }
+    }
 });
 
 /***/ }),
@@ -71139,7 +71147,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
 
-            editmode: true, // for edit conditional
+            editmode: false, // for edit conditional
             users: {}, //user object
 
             // Create a new form instance
@@ -71239,8 +71247,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         this.loadUsers();
 
+        //fire new vue instance to listen for 'afterCreated'
+        //reload users data
         Fire.$on('afterCreated', function () {
             _this5.loadUsers();
+        });
+
+        //fire new vue instance to listene for 'searching'
+        //send an http request to the server
+        Fire.$on('searching', function () {
+            var query = _this5.$parent.search; // query parent(app.js) for 'search'
+            axios.get('api/findUser?q=' + query).then(function (response) {
+                _this5.users = response.data;
+            });
+            //console.log('searching...');
         });
 
         // setInterval(() => {

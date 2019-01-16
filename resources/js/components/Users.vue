@@ -153,7 +153,7 @@
         data () {
             return {
                 
-                editmode : true, // for edit conditional
+                editmode : false, // for edit conditional
                 users: {}, //user object
 
                 // Create a new form instance
@@ -267,8 +267,21 @@
         created(){
             this.loadUsers();
 
+            //fire new vue instance to listen for 'afterCreated'
+            //reload users data
             Fire.$on('afterCreated',() => {
                 this.loadUsers();
+            });
+
+            //fire new vue instance to listene for 'searching'
+            //send an http request to the server
+            Fire.$on('searching',() => {
+                let query = this.$parent.search; // query parent(app.js) for 'search'
+                axios.get('api/findUser?q='+query)
+                     .then(response => {
+                         this.users = response.data;
+                        })
+                //console.log('searching...');
             });
             
             // setInterval(() => {
