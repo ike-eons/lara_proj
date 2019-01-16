@@ -71195,29 +71195,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         updateUser: function updateUser() {
-            this.$Progress.start();
-            // this.form.put('api/user/'+this.form.id)
-            //     .then( () => {
-            //         Fire.$emit('afterCreated');
-            //         //success
-            //         $('#addNewUser').modal('hide');
-            //         swal(
-            //             'Updated!',
-            //             'User Info has been updated.',
-            //             'success'
-            //             )
-            //         this.$Progress.finish();
-            //         Fire.$emit('afterCreated');
+            var _this3 = this;
 
-            //     })
-            //     .catch(() => {
-            //         this.$Progress.fail();
-            //     });
-            this.form.put('api/user/' + this.form.id);
-            Fire.$emit('afterCreated');
+            this.$Progress.start();
+            this.form.put('api/user/' + this.form.id).then(function () {
+                //success
+                $('#addNewUser').modal('hide');
+                swal('Updated!', 'User Info has been updated.', 'success');
+                _this3.$Progress.finish();
+                Fire.$emit('afterCreated');
+            }).catch(function () {
+                _this3.$Progress.fail();
+            });
         },
         deleteUser: function deleteUser(id) {
-            var _this3 = this;
+            var _this4 = this;
 
             swal({
                 title: 'Are you sure?',
@@ -71232,7 +71224,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 // Send AJAX request to the server
                 if (result.value) {
 
-                    _this3.form.delete('api/user/' + id).then(function () {
+                    _this4.form.delete('api/user/' + id).then(function () {
                         swal('Deleted!', 'Your file has been deleted.', 'success');
                         Fire.$emit('afterCreated');
                     }).catch(function () {
@@ -71243,12 +71235,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     created: function created() {
-        var _this4 = this;
+        var _this5 = this;
 
         this.loadUsers();
 
         Fire.$on('afterCreated', function () {
-            _this4.loadUsers();
+            _this5.loadUsers();
         });
 
         // setInterval(() => {

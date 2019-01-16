@@ -208,25 +208,22 @@
                 },
                 updateUser(){
                     this.$Progress.start();
-                    // this.form.put('api/user/'+this.form.id)
-                    //     .then( () => {
-                    //         Fire.$emit('afterCreated');
-                    //         //success
-                    //         $('#addNewUser').modal('hide');
-                    //         swal(
-                    //             'Updated!',
-                    //             'User Info has been updated.',
-                    //             'success'
-                    //             )
-                    //         this.$Progress.finish();
-                    //         Fire.$emit('afterCreated');
-                            
-                    //     })
-                    //     .catch(() => {
-                    //         this.$Progress.fail();
-                    //     });
-                    this.form.put('api/user/'+this.form.id);
+                    this.form.put('api/user/'+this.form.id)
+                        .then( () => {
+                            //success
+                            $('#addNewUser').modal('hide');
+                            swal(
+                                'Updated!',
+                                'User Info has been updated.',
+                                'success'
+                                )
+                            this.$Progress.finish();
                             Fire.$emit('afterCreated');
+                        })
+                        .catch(() => {
+                            this.$Progress.fail();
+                        });
+                    
                                 
                 },
                 deleteUser(id){

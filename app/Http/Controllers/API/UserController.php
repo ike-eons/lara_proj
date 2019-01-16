@@ -77,8 +77,9 @@ class UserController extends Controller
             'password' => 'sometimes|min:6'
         ]);
 
-       return $user->update($request->all());
-        //return ['message'=>'updated user info'];
+        $user->update($request->all());
+
+        return ['message'=>'updated user info'];
     }
 
     /**
